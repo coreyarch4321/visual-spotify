@@ -7,7 +7,7 @@ class ArticlesList extends React.Component {
   @observable articles = [];
 
   async componentDidMount() {
-
+    console.log("component mounted");
   }
 
   @action
