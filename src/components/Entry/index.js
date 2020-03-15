@@ -2,7 +2,7 @@ import React from "react";
 import { observable, action } from "mobx";
 import { observer } from "mobx-react";
 import LoginFlow from "../LoginFlow";
-import TracksList from "../TracksList";
+import TrackComparison from "../TrackComparison";
 
 @observer
 class Entry extends React.Component {
@@ -35,7 +35,7 @@ class Entry extends React.Component {
     if (!this.isLoggedIn) {
       return <LoginFlow />
     } else {
-      return <TracksList />
+      return <TrackComparison />
     }
   }
 }

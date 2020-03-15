@@ -7,11 +7,11 @@ const accessToken = localStorage.getItem("access_token");
 
 export const login = () => axios.get(loginString);
 
-export const getTracksByArtist = (artist) => axios.get(`${baseURL}/search?q=${artist}&type=track`, {
-  headers: {
-    Authorization: "Bearer " + accessToken //the token is a variable which holds the token
-  }
-});
+// export const getTracksByArtist = (artist) => axios.get(`${baseURL}/search?q=${artist}&type=track`, {
+//   headers: {
+//     Authorization: "Bearer " + accessToken //the token is a variable which holds the token
+//   }
+// });
 
 export const getTopTracks = () => axios.get(`${baseURL}/me/top/tracks?time_range=medium_term&limit=10&offset=5`, {
   headers: {
