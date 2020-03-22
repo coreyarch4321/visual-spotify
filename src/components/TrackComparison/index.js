@@ -56,16 +56,19 @@ class TrackComparison extends React.Component {
   // compare tracks and reset tracks
   @action
   handleCompareTracks = (key) => {
-    console.log(this.leftTrack.popularity)
     let winningTrack = null;
+    let trackToRemoveByName = null;
 
     // set the winning track depending on which track had higher popularity
     if (this.leftTrack.popularity > this.rightTrack.popularity) {
       winningTrack = LEFT_TRACK;
+      trackToRemoveByName = this.rightTrack.name;
     } else if (this.leftTrack.popularity < this.rightTrack.popularity) {
-      winningTrack = RIGHT_TRACK
+      winningTrack = RIGHT_TRACK;
+      trackToRemoveByName = this.leftTrack.name;
     } else {
       winningTrack = TIE;
+      trackToRemoveByName = this.leftTrack.name;
     }
 
     // check to see if user won, lost or tied by comparing key value to winning track
@@ -78,6 +81,10 @@ class TrackComparison extends React.Component {
         this.roundOutcome = LOST;
       }
     }
+
+    // remove losing track by name
+    const updatedTracks = this.tracks.filter((track) => track.name !== trackToRemoveByName);
+    this.tracks = updatedTracks;
 
     setTimeout(this.setNewRound, 2000)
   }
@@ -98,33 +105,36 @@ class TrackComparison extends React.Component {
     if (this.isLoading) {
       return <CircularProgress color="secondary" />
     } else {
-      console.log("this.roundOutcome: ",this.roundOutcome)
       return (
         <Container>
-          <LeftTrack>
-            {this.leftTrack && (
-              <TrackCard
-                title={this.leftTrack && this.leftTrack.name}
-                url={this.leftTrack && this.leftTrack.album && this.leftTrack.album.images && this.leftTrack.album.images[0] && this.leftTrack.album.images[0].url}
-                onClick={() => this.handleCompareTracks(LEFT_TRACK)}
-              />
-            )}
-          </LeftTrack>
-          <ResultContainer>
-            {this.roundOutcome === null && <ResultText>OR</ResultText>}
-            {this.roundOutcome === WON && <ResultText>WON</ResultText>}
-            {this.roundOutcome === LOST && <ResultText>LOST</ResultText>}
-            {this.roundOutcome === TIE && <ResultText>TIE</ResultText>}
-          </ResultContainer>
-          <RightTrack>
-            {this.rightTrack && (
-              <TrackCard
-                title={this.rightTrack.name}
-                url={this.rightTrack.album && this.rightTrack.album.images && this.rightTrack.album.images[0] && this.rightTrack.album.images[0].url}
-                onClick={() => this.handleCompareTracks(RIGHT_TRACK)}
-              />
-            )}
-          </RightTrack>
+          <GameTitle>Spotify Feud</GameTitle>
+          <GameInstruction>Which is more popular?</GameInstruction>
+          <GameContent>
+            <LeftTrack>
+              {this.leftTrack && (
+                <TrackCard
+                  title={this.leftTrack && this.leftTrack.name}
+                  url={this.leftTrack && this.leftTrack.album && this.leftTrack.album.images && this.leftTrack.album.images[0] && this.leftTrack.album.images[0].url}
+                  onClick={() => this.handleCompareTracks(LEFT_TRACK)}
+                />
+              )}
+            </LeftTrack>
+            <ResultContainer>
+              {this.roundOutcome === null && <ResultText>OR</ResultText>}
+              {this.roundOutcome === WON && <WonText>WON</WonText>}
+              {this.roundOutcome === LOST && <LostText>LOST</LostText>}
+              {this.roundOutcome === TIE && <ResultText>TIE</ResultText>}
+            </ResultContainer>
+            <RightTrack>
+              {this.rightTrack && (
+                <TrackCard
+                  title={this.rightTrack.name}
+                  url={this.rightTrack.album && this.rightTrack.album.images && this.rightTrack.album.images[0] && this.rightTrack.album.images[0].url}
+                  onClick={() => this.handleCompareTracks(RIGHT_TRACK)}
+                />
+              )}
+            </RightTrack>
+          </GameContent>
         </Container>
       )
     }
@@ -133,10 +143,31 @@ class TrackComparison extends React.Component {
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+`;
+
+const GameContent = styled.div`
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 16px;
+`;
+
+const GameTitle = styled.div`
+  font-size: 60px;
+  font-weight: bold;
+  color: coral;
+  text-transform: uppercase;
+`;
+
+const GameInstruction = styled.div`
+  font-size: 32px;
+  color: black;
+  margin-top: 20px;
 `;
 
 const LeftTrack = styled.div`
@@ -163,6 +194,30 @@ const ResultText = styled.div`
   text-align: center;
   font-size: 32px;
   color: white;
+`;
+
+const WonText = styled.div`
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  padding: 0;
+  display: inline-block;
+  line-height: 150px;
+  text-align: center;
+  font-size: 40px;
+  color: yellow;
+`;
+
+const LostText = styled.div`
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  padding: 0;
+  display: inline-block;
+  line-height: 150px;
+  text-align: center;
+  font-size: 40px;
+  color: red;
 `;
 
 export default TrackComparison;

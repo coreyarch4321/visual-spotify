@@ -12,7 +12,7 @@ const TrackCard = observer(({ title, url, onClick }) => {
     <Card onClick={onClick}>
       <CardActionArea>
         <CardMedia
-          component={() => <img src={url} />}
+          component={() => <img src={url} width={600} height={600} />}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
