@@ -2,7 +2,7 @@ import React from "react";
 import { observable, action } from "mobx";
 import { observer } from "mobx-react";
 import LoginFlow from "../LoginFlow";
-import TrackComparison from "../TrackComparison";
+import TrackComparison from "../PopularityTracksGame/TrackComparison";
 
 @observer
 class Entry extends React.Component {

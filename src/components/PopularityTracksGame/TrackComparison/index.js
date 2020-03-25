@@ -2,9 +2,9 @@ import React from "react";
 import { observable, action, runInAction, computed } from "mobx";
 import { observer } from "mobx-react";
 import styled from "styled-components";
-import { getTopTracks } from "../../services/TransportLayer";
+import { getTopTracks } from "../../../services/TransportLayer";
 import CircularProgress from '@material-ui/core/CircularProgress';
-import TrackCard from "../TrackCard";
+import TrackCard from "../../TrackCard";
 
 // comparison answer values
 const LEFT_TRACK = "left_track";
