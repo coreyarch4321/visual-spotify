@@ -1,11 +1,11 @@
 import React from "react";
 import { observer } from "mobx-react";
-import TrackComparison from "../PopularityTracksGame/TrackComparison";
+import HomeScreen from "../../screens/HomeScreen";
 
 @observer
 class Entry extends React.Component {
     render() {
-        return <TrackComparison />;
+        return <HomeScreen />;
     }
 }
 
