@@ -5,9 +5,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import Skeleton from '@material-ui/lab/Skeleton';
 
-const TrackCard = observer(({ title, url, onClick }) => {
+const CharityCard = observer(({ title, url, onClick }) => {
   return (
     <Card onClick={onClick}>
       <CardActionArea>
@@ -24,4 +23,4 @@ const TrackCard = observer(({ title, url, onClick }) => {
   );
 })
 
-export default TrackCard;
+export default CharityCard;
