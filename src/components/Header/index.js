@@ -47,7 +47,6 @@ class Header extends React.Component {
 }
 const HeaderWrapper = withStyles({
     root: {
-        minHeight: "var(--headerHeight)",
         backgroundColor: "white",
         boxShadow: "none",
         justifyContent: "center",
@@ -63,7 +62,7 @@ const TopContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     box-shadow: none;
-    margin-left: var(--gutterMargin);
+    margin-left: 80px;
     align-items: center;
 `;
 
